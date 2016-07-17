@@ -22,6 +22,13 @@ class Question(models.Model):
     def has_choice_set(self):
         return bool(self.choice_set.all())
 
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Published Recently?'
+
+    has_choice_set.boolean = True
+    has_choice_set.short_description = 'Has Choices?'
+
 
 @python_2_unicode_compatible
 class Choice(models.Model):
