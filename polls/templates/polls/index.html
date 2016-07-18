@@ -4,12 +4,32 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/normalize.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'polls/skeleton.css' %}" />
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p> No polls are available.</p>
-{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="six columns offset-by-one">
+            <h1>Choose a Poll</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="six columns offset-by-one">
+            {% if latest_question_list %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for question in latest_question_list %}
+                        <tr>
+                            <td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p> No polls are available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
